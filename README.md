@@ -1,2 +1,0 @@
-# NeBuLa
-game project
