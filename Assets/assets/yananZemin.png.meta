@@ -1,0 +1,259 @@
+fileFormatVersion: 2
+guid: 5633f70de58e45b4b994192932923e55
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: yananZemin_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 18
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 424bad4824e81194485d0aec94f16d46
+      internalID: 675494683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yananZemin_1
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 17
+        width: 38
+        height: 40
+      alignment: 9
+      pivot: {x: 0.49593633, y: 0.46525508}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a02d60c0c8ef841b1f78bc027515db
+      internalID: -840705784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yananZemin_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 17
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db4a4d46ebb2b04dbb3716aed2a4575
+      internalID: 1221956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: yananZemin_3
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 18
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d1b66e12c225af46a6dbc9a616bc1f7
+      internalID: 449931776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      yananZemin_18: 1466871771
+      yananZemin_11: 811508062
+      yananZemin_28: -1080114407
+      yananZemin_50: -1164151704
+      yananZemin_41: -1861779391
+      yananZemin_46: 1229886365
+      yananZemin_5: -2004295645
+      yananZemin_48: 1371448111
+      yananZemin_37: 319280176
+      yananZemin_16: -354937006
+      yananZemin_29: 569897582
+      yananZemin_45: -47684064
+      yananZemin_22: -45637990
+      yananZemin_26: -2023943314
+      yananZemin_30: 1374351104
+      yananZemin_2: 1221956
+      yananZemin_32: -683230414
+      yananZemin_20: -375037766
+      yananZemin_19: 594074133
+      yananZemin_44: -400146766
+      yananZemin_43: -1814592792
+      yananZemin_15: -637419274
+      yananZemin_31: 843925754
+      yananZemin_12: 1462799749
+      yananZemin_25: -1788378006
+      yananZemin_6: 1586348968
+      yananZemin_9: 98484870
+      yananZemin_3: 449931776
+      yananZemin_36: -963819322
+      yananZemin_35: -2088214534
+      yananZemin_24: -827466695
+      yananZemin_23: 1608713686
+      yananZemin_21: 538254538
+      yananZemin_51: 1541536301
+      yananZemin_7: 1427544109
+      yananZemin_27: 1320511851
+      yananZemin_17: -1531142976
+      yananZemin_1: -840705784
+      yananZemin_4: -1161294754
+      yananZemin_42: 1121270901
+      yananZemin_14: -1015875414
+      yananZemin_38: 911710746
+      yananZemin_8: 2025855950
+      yananZemin_13: -1310269723
+      yananZemin_39: -589831664
+      yananZemin_33: -1450042839
+      yananZemin_40: -87529825
+      yananZemin_34: -1355893423
+      yananZemin_49: -637951807
+      yananZemin_10: -2119336151
+      yananZemin_52: -2024928761
+      yananZemin_47: 341896146
+      yananZemin_0: 675494683
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
