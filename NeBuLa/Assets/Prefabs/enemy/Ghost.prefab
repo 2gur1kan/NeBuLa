@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7936627335664067987}
   - component: {fileID: 7936627335664067986}
   - component: {fileID: 7936627335664067985}
-  - component: {fileID: -2837644767455113972}
   - component: {fileID: 7241437804949811671}
   m_Layer: 0
   m_Name: Ghost
@@ -30,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7936627335664067989}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.47, y: 4.12, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7936627335664067991
 SpriteRenderer:
@@ -92,7 +91,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &7936627335664067990
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,7 +108,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &7936627335664067987
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,6 +120,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -153,6 +172,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -169,25 +194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab79e7e639580b8438f500eee15d0fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Exp: {fileID: 8116835565665911344, guid: ae78743c8a3c8774495141f9b6e64f45, type: 3}
+  HealthScale: 1
+  MaxHealth: 0
+  CurrentHealth: 0
   speed: 3.7
-  ebad: 5
-  CanBuyumeOrani: 8
-  MaxCan: 15
-  Can: 0
---- !u!114 &-2837644767455113972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7936627335664067989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4771c02730ed2c45b79a7df89b4b7da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drop: {fileID: 3212857119657260317, guid: 8905dfabf0c19fd4b822cf9e1bc0ab60, type: 3}
+  Exp: {fileID: 8116835565665911344, guid: ae78743c8a3c8774495141f9b6e64f45, type: 3}
+  ExpDropChance: 0.5
+  Stat: {fileID: 3212857119657260317, guid: 8905dfabf0c19fd4b822cf9e1bc0ab60, type: 3}
+  StatDropChance: 0.05
 --- !u!114 &7241437804949811671
 MonoBehaviour:
   m_ObjectHideFlags: 0

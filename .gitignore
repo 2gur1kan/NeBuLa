@@ -1,14 +1,27 @@
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
-#
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+# Unity specific
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Ii]mport/
+[Uu]ws/
+[Rr]eportCache/
+[Rr]eported[Ii]mport[Ii]mporters/
+[Aa]dds/
+[Ll]ightmap[Oo]ptimizedData/
+[Ll]ightmaps/
+[Ll]ightProbes/
+[Aa]ssembly-CSharp-Editor-firstpass-vs.csproj
+[Aa]ssembly-CSharp-vs.csproj
+[Aa]ssembly-CSharp-Editor-vs.csproj
+[Aa]ssembly-CSharp-Editor-firstpass.csproj
+NeBuLa.sln
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
