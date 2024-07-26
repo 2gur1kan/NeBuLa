@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthScale: 1
-  MaxHealth: 0
+  MaxHealth: 5
   CurrentHealth: 0
   speed: 3.6
   Exp: {fileID: 8116835565665911344, guid: da9769b74e0d61549a77e567fe3ecda2, type: 3}
@@ -214,5 +214,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6dd45e7859d074385c1ff71b45e85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasar: 2
-  beklemesuresisifirla: 0.1
+  damage: 2
+  cast: 0.1

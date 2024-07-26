@@ -106,8 +106,8 @@ public class YetenekAtisi : MonoBehaviour
     void yetenekAtisi()
     {
         //elementlerin güçleri
-        if (FireBallSeviyesi > 0) FireBall();
-        else if (LightningSeviyesi > 0) Lightning();
+        //if (FireBallSeviyesi > 0) FireBall();
+        if (LightningSeviyesi > 0) Lightning();
         else if(Ice_SharpSeviyesi > 0) Ice_Sharp();
 
         //yetenek atýþlarý

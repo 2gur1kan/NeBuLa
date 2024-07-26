@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     // getter methods
     public float Health { get => CurrentHealth; } 
     public float Speed { get => speed; }
-    public float Level { get => level; }
+    public int Level { get => level; }
 
     //////////////////// ana fonksiyonlar ////////////////////////////
     
@@ -158,7 +158,7 @@ public class Enemy : MonoBehaviour
 
         rand = Random.Range(0f,1f);
 
-        if (rand > StatDropChance)
+        if (rand <= StatDropChance)
         {
             Instantiate(Stat, transform.position, transform.rotation);
         }

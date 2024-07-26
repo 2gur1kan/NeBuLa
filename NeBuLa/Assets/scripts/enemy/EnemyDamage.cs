@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField] private float hasar = 2;
-    private int seviye;
+    [SerializeField] private float damage = 2;
+    private int level;
 
-    private float beklemesuresi = 0;
-    [SerializeField] private float beklemesuresisifirla = 0.1f;
+    private float timer = 0;
+    [SerializeField] private float cast = 0.1f;
 
     void Start()
     {
-        seviye = gameObject.GetComponent<Enemy_Follow>().getSeviye();
-        hasar += seviye * 0.2f;
+        level = gameObject.GetComponent<Enemy_Follow>().Level;
+        damage += level * 0.2f;
     }
 
     private void Update()
     {
-        if (beklemesuresi > 0) beklemesuresi -= Time.deltaTime;
+        if (timer > 0) timer -= Time.deltaTime;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            if(beklemesuresi <= 0)
+            if(timer <= 0)
             {
-                beklemesuresi = beklemesuresisifirla;
-                collision.GetComponent<player>().HasarAl(hasar);
+                timer = cast;
+                collision.GetComponent<player>().HasarAl(damage);
             }
 
         }
