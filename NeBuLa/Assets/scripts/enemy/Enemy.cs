@@ -196,6 +196,14 @@ public class Enemy : MonoBehaviour
         else CurrentHealth -= MaxHealth / 100;
     }
 
+    protected void ChangeDirection(float direction)
+    {
+        Vector3 tempsScale = transform.localScale;
+        tempsScale.x = direction;
+        transform.localScale = tempsScale;
+    }
+
+
     /// <summary>
     /// Düþmanin hasar alamasýný saðlayan fonksiyon
     /// </summary>

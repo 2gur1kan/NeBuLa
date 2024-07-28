@@ -26,7 +26,7 @@ public class SpellDataBaseController : MonoBehaviour
     /// <returns></returns>
     public GameObject SpellFinder(SpellName Sn)
     {
-        foreach (Spell spell in SDB.Spells)
+        foreach (SpellDBO spell in SDB.Spells)
         {
             if(spell.Name == Sn)
             {

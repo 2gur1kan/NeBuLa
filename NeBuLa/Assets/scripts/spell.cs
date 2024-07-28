@@ -59,6 +59,7 @@ public class spell : MonoBehaviour
     {
         if (GetComponent<Rigidbody2D>()) rb = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        Attack();
     }
 
     protected virtual void SpellStart()
@@ -89,11 +90,23 @@ public class spell : MonoBehaviour
     ////////////////////// diðer iþlevler ///////////////////////////////
 
     /// <summary>
-    /// spell in leveli yükseldiðinde olacak deðiþiklikler
+    /// spell in levelini 1 attýrmaya yarar
     /// </summary>
     public int LevelUp()
     {
         level++;
+
+        damage = baseDamage + (level * damageScale);
+
+        return level;
+    } 
+
+    /// <summary>
+    /// spell in levelini isteilen seviyeye yükseltir
+    /// </summary>
+    public int LevelUp(int level)
+    {
+        this.level = level;
 
         damage = baseDamage + (level * damageScale);
 

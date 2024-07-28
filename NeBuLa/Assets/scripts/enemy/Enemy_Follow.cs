@@ -28,7 +28,8 @@ public class Enemy_Follow : Enemy
             Vector2 yön = player.transform.position - transform.position;
             yön.Normalize();
 
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            Vector2 newPosition = Vector2.MoveTowards(rb.position, player.transform.position, speed * Time.deltaTime);
+            rb.MovePosition(newPosition);
 
             if (yön.x > 0)
             {
@@ -53,13 +54,6 @@ public class Enemy_Follow : Enemy
         Drop();
         CancelInvoke("Follow");
         Destroy(gameObject);
-    }
-
-    void ChangeDirection(float direction)
-    {
-        Vector3 tempsScale = transform.localScale;
-        tempsScale.x = direction;
-        transform.localScale = tempsScale;
     }
 
 }

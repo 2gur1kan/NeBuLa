@@ -139,8 +139,8 @@ public class YetenekAtisi : MonoBehaviour
 
             if (fireball_1 != null)
             {
-                fireball_1.HedefAta(hedef);
-                fireball_1.setSeviye(FireBallSeviyesi);
+                //fireball_1.HedefAta(hedef);
+                //fireball_1.setSeviye(FireBallSeviyesi);
             }
         }
         else FireBallSuresi -= Time.deltaTime;
