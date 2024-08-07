@@ -16,6 +16,7 @@ public class Enemy_Spawn : MonoBehaviour
     [SerializeField] private GameObject[] suru;
 
     private GameObject player;
+    private GameObject EnemyObject;
     private int seviye = 1;
     private int oncekiSeviye = 1;
 
@@ -28,10 +29,13 @@ public class Enemy_Spawn : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         setEnemys();
+
+        EnemyObject = new GameObject("EnemysObject");
+        EnemyObject.tag = "EnemysObject";
+        EnemyObject.AddComponent<Enemy_Array>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         seviye  = player.GetComponent<player>().getSeviye();
 
@@ -45,6 +49,9 @@ public class Enemy_Spawn : MonoBehaviour
         spawn();
     }
 
+    /// <summary>
+    /// Ouþacak düþmanlarý düzenler
+    /// </summary>
     void setEnemys()
     {
         Enemys = new List<GameObject>();
@@ -94,7 +101,7 @@ public class Enemy_Spawn : MonoBehaviour
         {
             beklemesuresi = beklemesuresiSifirla;
 
-            Instantiate(Enemys[Random.Range(0, Enemys.Count)], SpawnPoints[Random.Range(0, SpawnPoints.Length)].position, Quaternion.identity);
+            Instantiate(Enemys[Random.Range(0, Enemys.Count)], SpawnPoints[Random.Range(0, SpawnPoints.Length)].position, Quaternion.identity).transform.parent = EnemyObject.transform;
 
         }
         else beklemesuresi -= Time.deltaTime;

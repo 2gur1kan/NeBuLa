@@ -7,6 +7,8 @@ public class suru : MonoBehaviour
     [SerializeField] private int suruSayisi = 10;
     void Start()
     {
+        Transform EO = GameObject.FindGameObjectWithTag("EnemysObject").transform;
+
         if (suruSayisi > 0)
         {
 
@@ -19,6 +21,7 @@ public class suru : MonoBehaviour
             n.y += y;
 
             GameObject z = Instantiate(gameObject, n, transform.rotation);
+            z.transform.parent = EO;
             suru Z = z.GetComponent<suru>();
             Z.setSuruSayisi(suruSayisi - 1);
         }

@@ -20,6 +20,7 @@ TagManager:
   - LevelPanel
   - StatPanel
   - spawn
+  - EnemysObject
   layers:
   - Default
   - TransparentFX

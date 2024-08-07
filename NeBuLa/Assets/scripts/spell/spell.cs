@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class spell : MonoBehaviour
 {
+    [Header("Timer")]
+    [SerializeField] protected float spellCastTime = 1f;
+
     [Header("Damage")]
     [SerializeField] protected int baseDamage;
     [SerializeField] protected int damageScale;
@@ -13,7 +16,6 @@ public class spell : MonoBehaviour
 
     [Header("Move")]
     [SerializeField] protected float speed = 8f;
-    [SerializeField] protected bool isTrow = true;
     protected Vector2 MoveForRB;
 
     [Header("second phase")]
@@ -23,6 +25,7 @@ public class spell : MonoBehaviour
 
     protected Rigidbody2D rb;
     protected Transform Player;
+    protected GameObject EnemysObject = null;
 
     protected int Level { get => level; set => level = value; }
 
@@ -55,23 +58,38 @@ public class spell : MonoBehaviour
 
     ////////////////////// eriþim iþlevleri ///////////////////////////////
 
+    /// <summary>
+    /// Awake iþlevi için bir ileteç
+    /// </summary>
     protected virtual void SpellAwake()
     {
         if (GetComponent<Rigidbody2D>()) rb = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        EnemyObjectFinder();
+
         Attack();
     }
 
+    /// <summary>
+    /// start iþlevi için bir ileteç
+    /// </summary>
     protected virtual void SpellStart()
     {
 
     }
 
+    /// <summary>
+    /// Update iþlevi için bir ileteç
+    /// </summary>
     protected virtual void SpellUpdate()
     {
-        rb.velocity = MoveForRB;
+        
     }
 
+    /// <summary>
+    /// triggerEnter2d iþlevi için bir ileteç
+    /// </summary>
     protected virtual void SpellOnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Enemy")
@@ -82,9 +100,31 @@ public class spell : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// triggerexir2d iþlevi için bir ileteç
+    /// </summary>
     protected virtual void SpellOnTriggerExit2D(Collider2D collision)
     {
 
+    }
+
+    ////////////////////// timer iþlevleri ///////////////////////////////
+    
+    /// <summary>
+    /// attak iþlevini kendi içerisinde oyun bitene kadar belirli aralýklarla tekrarlamasýný saðlar
+    /// </summary>
+    protected virtual void restartAttack()
+    {
+        Invoke("Attack", spellCastTime);
+    }
+
+    /// <summary>
+    /// süre sayacýný es geçerek tekrar saldýrýnýn yapýlmasýný saðlar
+    /// </summary>
+    protected virtual void cancelAttackTimer()
+    {
+        CancelInvoke("Attack");
+        Attack();
     }
 
     ////////////////////// diðer iþlevler ///////////////////////////////
@@ -115,17 +155,9 @@ public class spell : MonoBehaviour
 
     public virtual void Attack()
     {
-        gameObject.SetActive(true);
+        gameObject.SetActive(false);
 
-        if (isTrow)
-        {
-            transform.position = Player.position;
-            SelectDirection();
-            Vector3 distance = target.position - transform.position;
-            float CalculateSpeed = speed * Time.deltaTime;
-            MoveForRB = new Vector2(distance.normalized.x * CalculateSpeed, distance.normalized.y * CalculateSpeed);
-        }
-
+        restartAttack();
     }
 
     protected virtual void DestroySpell()
@@ -153,43 +185,34 @@ public class spell : MonoBehaviour
         }
     }
 
-    ////////////////////// Yön bulma iþlevleri
-    protected void SelectDirection()
-    {
-        Vector3 h = target.position;
-        Vector3 m = transform.position;
-        Vector3 g = h - m;
+    ////////////////////////////////// Enemy Finder ////////////////////////////////////////////
 
-        if (h.x > m.x && h.y > m.y)
+    /// <summary>
+    /// Enemy object nesnesin bulmaya uðraþýr bulursa atamasýný yapar
+    /// </summary>
+    private void EnemyObjectFinder()
+    {
+        if(GameObject.FindGameObjectWithTag("EnemysObject"))
         {
-            DirectionAssign(DirectionFinder(g, 0f));
+            EnemysObject = GameObject.FindGameObjectWithTag("EnemysObject");
+            return;
         }
-        else if (h.x < m.x && h.y > m.y)
-        {
-            g = new Vector3(m.y - h.y, h.x - m.x, m.z);
-            DirectionAssign(DirectionFinder(g, 90f));
-        }
-        else if (h.x < m.x && h.y < m.y)
-        {
-            g = m - h;
-            DirectionAssign(DirectionFinder(g, 180f));
-        }
-        else
-        {
-            g = new Vector3(h.x - m.x, m.y - h.y, m.z);
-            DirectionAssign(DirectionFinder(g, -90f));
-        }
+
+        StartCoroutine(SearchEnemyObject());
     }
 
-    protected void DirectionAssign(float angle)
+    private IEnumerator SearchEnemyObject()
     {
-        transform.rotation = Quaternion.Euler(0, 0, angle); // Açýya göre rotasyon ayarý
-    }
+        while (EnemysObject == null)
+        {
+            yield return new WaitForSeconds(.5f);
 
-    protected float DirectionFinder(Vector3 yon, float add)
-    {
-        float angle = Mathf.Atan2(yon.y, yon.x) * Mathf.Rad2Deg; // Açý hesaplamasý
-        angle += add;
-        return angle;
+            if (GameObject.FindGameObjectWithTag("EnemysObject"))
+            {
+                EnemysObject = GameObject.FindGameObjectWithTag("EnemysObject");
+            }
+        }
+
+        yield return null;
     }
 }
