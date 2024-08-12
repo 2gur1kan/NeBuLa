@@ -4,40 +4,75 @@ using UnityEngine;
 
 public class TrowSpell : spell
 {
-    protected Transform targetPos;
-    protected Transform thisPos;
+    [Header("Move")]
+    [SerializeField] protected float speed = 8f;
+    protected Vector2 MoveForRB;
 
-    protected override void SpellStart()
+    protected Vector3 targetPos;
+    protected Vector3 thisPos;
+
+    ////////////////////////////// var olan iþlevler
+
+    protected override void SpellAwake()
     {
-        base.SpellStart();
+        base.SpellAwake();
 
-        targetPos = target.transform;
-        thisPos = Player;
+        MoveForRB = new Vector2();
+        MoveForRB = Vector2.zero;
     }
 
     protected override void SpellUpdate()
     {
-        rb.velocity = MoveForRB;
+        if(MoveForRB != Vector2.zero) rb.velocity = MoveForRB;
     }
 
     public override void Attack()
     {
-        gameObject.SetActive(true);
+        MoveForRB = Vector2.zero;
+        target = EnemysObject.SelectNearestEnemy(player.transform.position, radius);
 
-        transform.position = thisPos.position;
-        SelectDirection();
-        Vector3 distance = targetPos.position - thisPos.position;
-        float CalculateSpeed = speed * Time.deltaTime;
-        MoveForRB = new Vector2(distance.normalized.x * CalculateSpeed, distance.normalized.y * CalculateSpeed);
+        if (target == null || target.x == Mathf.NegativeInfinity)
+        {
+            RestartAttackTimer();
+            return;
+        }
+
+        targetPos = target;
+
+        thisPos = player.position;
+        transform.position = thisPos;
+
+        SelectDirection(targetPos, thisPos);
+
+        MoveForRB = CalculateMove();
+
+        ActivateSpell();
 
         restartAttack();
     }
 
-    ////////////////////// Yön bulma iþlevleri
-    protected void SelectDirection()
+    /////////////////////// hareket etme
+
+    /// <summary>
+    /// hareket edeceði yönü ve büyüklüðünü hesaplar
+    /// </summary>
+    /// <returns></returns>
+    protected Vector2 CalculateMove()
     {
-        Vector3 h = target.position;
-        Vector3 m = transform.position;
+        if (targetPos == Vector3.negativeInfinity) return Vector2.zero;
+
+        Vector3 distance = targetPos - thisPos;
+        float CalculateSpeed = speed;
+        return new Vector2(distance.normalized.x * CalculateSpeed, distance.normalized.y * CalculateSpeed);
+    }
+
+    ////////////////////// Yön bulma iþlevleri
+    
+    /// <summary>
+    /// atýþýn bakacaðý yönü belirler
+    /// </summary>
+    protected void SelectDirection(Vector3 h, Vector3 m)
+    {
         Vector3 g = h - m;
 
         if (h.x > m.x && h.y > m.y)
@@ -63,12 +98,13 @@ public class TrowSpell : spell
 
     protected void DirectionAssign(float angle)
     {
-        transform.rotation = Quaternion.Euler(0, 0, angle); // Açýya göre rotasyon ayarý
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)); // Açýya göre rotasyon ayarý
     }
 
-    protected float DirectionFinder(Vector3 yon, float add)
+    protected float DirectionFinder(Vector3 direciton, float add)
     {
-        float angle = Mathf.Atan2(yon.y, yon.x) * Mathf.Rad2Deg; // Açý hesaplamasý
+        float angle = direciton.y / (direciton.x + direciton.y);// Açý hesaplamasý
+        angle *= 90;
         angle += add;
         return angle;
     }
@@ -80,7 +116,7 @@ public class TrowSpell : spell
     /// </summary>
     protected void SwitchPos()
     {
-        Transform gg = thisPos;
+        Vector3 gg = thisPos;
         thisPos = targetPos;
         targetPos = gg;
     }

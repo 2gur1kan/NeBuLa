@@ -19,6 +19,7 @@ public class SpellController : MonoBehaviour
     private void Start()
     {
         SDBC = SpellDataBaseController.Instance;
+        SelectElement(SpellName.FireBall);
     }
 
     /////////////////////////////// Dýþarýdan eriþim için iþlevler ////////////////////////
@@ -28,10 +29,11 @@ public class SpellController : MonoBehaviour
     /// </summary>
     public void SelectElement(SpellName SN)
     {
-        if(element.spell.Count < element.spellLevel)
+        if(element.spell.Count < element.spellLevel / 5 + 1)
         {
-           element.spell.Add(Instantiate(SDBC.SpellFinder(SN), transform.position, Quaternion.identity));
-           element.name = SN;
+            GameObject spell = Instantiate(SDBC.SpellFinder(SN), transform.position, Quaternion.identity);
+            element.spell.Add(spell);
+            element.name = SN;
         }
 
         UpgradeSpellLevel(element.spell, element.spellLevel);

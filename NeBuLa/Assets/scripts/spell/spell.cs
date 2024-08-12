@@ -5,18 +5,17 @@ using UnityEngine;
 public class spell : MonoBehaviour
 {
     [Header("Timer")]
-    [SerializeField] protected float spellCastTime = 1f;
+    [SerializeField] protected float spellCastTime = 10f;
+    [SerializeField] protected float spellExistenceTime = 6f;
 
     [Header("Damage")]
     [SerializeField] protected int baseDamage;
     [SerializeField] protected int damageScale;
+    [SerializeField] protected float radius = 30f;
     protected float damage;
-    private int level = 1;
-    protected Transform target;
-
-    [Header("Move")]
-    [SerializeField] protected float speed = 8f;
-    protected Vector2 MoveForRB;
+    protected int level = 1;
+    protected Vector3 target;
+    protected bool isActive = true;
 
     [Header("second phase")]
     [SerializeField] protected GameObject destroyObject = null;
@@ -24,10 +23,14 @@ public class spell : MonoBehaviour
     protected spell CreateObjectSC = null;
 
     protected Rigidbody2D rb;
-    protected Transform Player;
-    protected GameObject EnemysObject = null;
+    protected Collider2D clldr;
+    protected SpriteRenderer sr;
+    protected AudioSource aus;
+    protected Transform player;
+    protected Enemy_Array EnemysObject = null;
 
-    protected int Level { get => level; set => level = value; }
+    public int Level { get => level; set => level = value; }
+    public Transform Player { get => player; set => player = value; }
 
     ////////////////////// baz iþlevler ///////////////////////////////
 
@@ -64,11 +67,14 @@ public class spell : MonoBehaviour
     protected virtual void SpellAwake()
     {
         if (GetComponent<Rigidbody2D>()) rb = GetComponent<Rigidbody2D>();
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        if(player == null) player = GameObject.FindGameObjectWithTag("Player").transform;
+        clldr = GetComponent<Collider2D>();
+        sr = GetComponent<SpriteRenderer>();
+        aus = GetComponent<AudioSource>();
+
+        target = Vector3.negativeInfinity;
 
         EnemyObjectFinder();
-
-        Attack();
     }
 
     /// <summary>
@@ -76,7 +82,7 @@ public class spell : MonoBehaviour
     /// </summary>
     protected virtual void SpellStart()
     {
-
+        
     }
 
     /// <summary>
@@ -92,7 +98,7 @@ public class spell : MonoBehaviour
     /// </summary>
     protected virtual void SpellOnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Enemy")
+        if (collision.transform.tag == "Enemy" && isActive)
         {
             collision.GetComponent<Enemy>().TakeDamage(damage);
 
@@ -118,13 +124,23 @@ public class spell : MonoBehaviour
         Invoke("Attack", spellCastTime);
     }
 
+
     /// <summary>
-    /// süre sayacýný es geçerek tekrar saldýrýnýn yapýlmasýný saðlar
+    /// tekrardan attack yapmasý için iþlemleri kapatýr
     /// </summary>
-    protected virtual void cancelAttackTimer()
+    protected virtual void RestartAttackTimer()
     {
+        setActivateFalse();
+        CancelInvoke("DestroySpell");
+        //DestroySpell();
         CancelInvoke("Attack");
-        Attack();
+        Invoke("Attack", .1f);
+    }
+
+    protected virtual void ActivateSpell()
+    {
+        setActiveTrue();
+        Invoke("DestroySpell", spellExistenceTime);
     }
 
     ////////////////////// diðer iþlevler ///////////////////////////////
@@ -155,32 +171,42 @@ public class spell : MonoBehaviour
 
     public virtual void Attack()
     {
-        gameObject.SetActive(false);
+        target = EnemysObject.SelectNearestEnemy(player.transform.position, radius);
+
+        if (target == null || target.x == Mathf.NegativeInfinity)
+        {
+            RestartAttackTimer();
+            return;
+        }
+
+        ActivateSpell();
 
         restartAttack();
     }
 
     protected virtual void DestroySpell()
     {
+        if (!isActive) return;
+
         if (destroyObject != null) CreateOrUseDestroyObject();
-        gameObject.SetActive(false);
+        setActivateFalse();
     }
 
     protected virtual void CreateOrUseDestroyObject()
     {
-        if(CreateObject == null)
+        if (CreateObject == null)
         {
             CreateObject = Instantiate(destroyObject, transform.position, Quaternion.identity);
             CreateObjectSC = CreateObject.GetComponent<spell>();
 
             CreateObject.transform.position = transform.position;
             CreateObjectSC.Level = level;
+            if (CreateObject.GetComponent<DropSpell>()) CreateObject.GetComponent<DropSpell>().DropPos = transform;
 
             CreateObjectSC.Attack();
         }
         else
         {
-            CreateObject.transform.position = transform.position;
             CreateObjectSC.Attack();
         }
     }
@@ -190,18 +216,21 @@ public class spell : MonoBehaviour
     /// <summary>
     /// Enemy object nesnesin bulmaya uðraþýr bulursa atamasýný yapar
     /// </summary>
-    private void EnemyObjectFinder()
+    protected void EnemyObjectFinder()
     {
         if(GameObject.FindGameObjectWithTag("EnemysObject"))
         {
-            EnemysObject = GameObject.FindGameObjectWithTag("EnemysObject");
+            EnemysObject = GameObject.FindGameObjectWithTag("EnemysObject").GetComponent<Enemy_Array>();
+
+            //düþman objesi oluþturulduðund atack yapmasýný saðlar
+            Attack();
             return;
         }
 
         StartCoroutine(SearchEnemyObject());
     }
 
-    private IEnumerator SearchEnemyObject()
+    protected IEnumerator SearchEnemyObject()
     {
         while (EnemysObject == null)
         {
@@ -209,10 +238,37 @@ public class spell : MonoBehaviour
 
             if (GameObject.FindGameObjectWithTag("EnemysObject"))
             {
-                EnemysObject = GameObject.FindGameObjectWithTag("EnemysObject");
+                EnemysObject = GameObject.FindGameObjectWithTag("EnemysObject").GetComponent<Enemy_Array>();
+
+                //düþman objesi oluþturulduðund atack yapmasýný saðlar
+                Attack();
             }
         }
 
         yield return null;
+    }
+
+    //////////////////////////////// Spell Acrivate ///////////////////////////////////////
+    
+    /// <summary>
+    /// objenin görünür evrende oluþmasýný saðlar
+    /// </summary>
+    protected void setActiveTrue()
+    {
+        isActive = true;
+        clldr.enabled = true;
+        sr.enabled = true;
+        aus.enabled = true;
+    }
+
+    /// <summary>
+    /// objenin gönür düzlemde kaybolmasýný saðlar
+    /// </summary>
+    protected void setActivateFalse()
+    {
+        isActive = false;
+        clldr.enabled = false;
+        sr.enabled = false;
+        aus.enabled = false;
     }
 }

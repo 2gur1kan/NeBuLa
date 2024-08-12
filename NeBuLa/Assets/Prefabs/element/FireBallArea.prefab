@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5554611634543667026}
   - component: {fileID: 3856526730512046718}
   - component: {fileID: 901209597972187951}
-  - component: {fileID: 6864226647152225208}
   - component: {fileID: 5619636668454135782}
   - component: {fileID: -859283969676066616}
   - component: {fileID: 6994836738963795411}
@@ -124,24 +123,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.19
---- !u!114 &6864226647152225208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163583310388607078}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a686b50cbde21e44480ce54707fa7856, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellCastTime: 1
-  baseDamage: 0
-  damageScale: 0
-  speed: 8
-  destroyObject: {fileID: 0}
-  timer: 0
 --- !u!114 &5619636668454135782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,10 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e986417d98bf2e4ba99f610d04e53b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellCastTime: 1
-  baseDamage: 0
-  damageScale: 0
-  speed: 0
+  spellCastTime: 0
+  spellExistenceTime: 3
+  baseDamage: 1
+  damageScale: 1
+  radius: 30
   destroyObject: {fileID: 0}
   timer: 3
 --- !u!95 &-859283969676066616

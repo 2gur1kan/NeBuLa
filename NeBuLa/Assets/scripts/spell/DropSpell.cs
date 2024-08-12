@@ -5,32 +5,34 @@ using UnityEngine;
 public class DropSpell : spell
 {
     [Header("DropSpell")]
-    [SerializeField] protected float timer = 0f;
     protected Transform dropPos = null;
 
     public Transform DropPos {set => dropPos = value; }
 
     protected override void SpellStart()
     {
-        base.SpellAwake();
+        base.SpellStart();
 
-        if(dropPos == null) dropPos = Player;
+        if (dropPos == null) dropPos = player;
+    }
+
+    protected override void SpellOnTriggerEnter2D(Collider2D collision)
+    {
+        base.SpellOnTriggerEnter2D(collision);
+    }
+
+    protected override void DestroySpell()
+    {
+        // burasý boþ çünkü yok olma olayý attack da gerçekleþiyor
     }
 
     public override void Attack()
     {
-        gameObject.SetActive(true);
+        setActiveTrue();
 
+        if (dropPos == null) dropPos = player;
         transform.position = dropPos.position;
 
-        if (timer > 0) Invoke("Timer", timer);
-    }
-
-    /// <summary>
-    /// Drop spellerinde varsa belirli bir süre sonra olmasý gereken oalylarý gerçekleþtirir.
-    /// </summary>
-    protected virtual void Timer()
-    {
-        gameObject.SetActive(false);
+        Invoke("setActivateFalse", spellExistenceTime);
     }
 }

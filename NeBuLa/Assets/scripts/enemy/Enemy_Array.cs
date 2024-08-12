@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy_Array : MonoBehaviour
 {
-    private List<Transform> Enemys = new List<Transform>();
+    [SerializeField] private List<Transform> Enemys = new List<Transform>();
 
     private void Start()
     {

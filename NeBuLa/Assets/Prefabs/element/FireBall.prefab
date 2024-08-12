@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6150921312760967267}
+  - component: {fileID: -6914523464214569640}
   - component: {fileID: 6150921312760967264}
-  - component: {fileID: 6150921312760967265}
   - component: {fileID: 6150921312760967266}
   - component: {fileID: 754599616030431253}
   - component: {fileID: 5730528874537377377}
@@ -37,6 +37,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6914523464214569640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150921312760967270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa1cf55f2eba34a4ca3c00659e06ff2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellCastTime: 10
+  spellExistenceTime: 6
+  baseDamage: 2
+  damageScale: 1
+  radius: 30
+  destroyObject: {fileID: 163583310388607078, guid: 2d0bc941a81a83d49b7e745aaffe8368, type: 3}
+  speed: 10
 --- !u!212 &6150921312760967264
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,23 +108,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6150921312760967265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6150921312760967270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b3981c53b2b0940a5c14fa127c322d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellCastTime: 6
-  baseDamage: 2
-  damageScale: 2
-  speed: 8
-  destroyObject: {fileID: 163583310388607078, guid: 2d0bc941a81a83d49b7e745aaffe8368, type: 3}
 --- !u!58 &6150921312760967266
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -188,7 +190,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!82 &1233177277908540575
 AudioSource:
   m_ObjectHideFlags: 0
