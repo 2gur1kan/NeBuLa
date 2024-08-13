@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 598482465124691424}
+  - component: {fileID: -2194701635708203521}
   - component: {fileID: 598482465124691427}
   - component: {fileID: 598482465124691426}
-  - component: {fileID: 598482465124691430}
   - component: {fileID: 598482465124691425}
-  - component: {fileID: 598482465124691431}
   - component: {fileID: 6270279034850957362}
   m_Layer: 0
   m_Name: Lightning
@@ -29,14 +28,32 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598482465124691453}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.42, y: 2.84, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2194701635708203521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598482465124691453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e00e21acf5a98941b646246db3492ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellCastTime: 6
+  spellExistenceTime: 1
+  baseDamage: 2
+  damageScale: 1
+  radius: 30
+  destroyObject: {fileID: 0}
 --- !u!212 &598482465124691427
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91,7 +108,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &598482465124691426
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -100,7 +117,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3c9899d1b09b46041847ff9e6710e2e4, type: 2}
-  m_CullingMode: 2
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -108,22 +125,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &598482465124691430
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598482465124691453}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 08720c8d5cce99f41a8277c50171b9f7, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &598482465124691425
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -134,6 +137,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -150,20 +172,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &598482465124691431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598482465124691453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d110cf2677a64c4881128082aca4568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasar: 3
-  hedef: {fileID: 0}
 --- !u!82 &6270279034850957362
 AudioSource:
   m_ObjectHideFlags: 0

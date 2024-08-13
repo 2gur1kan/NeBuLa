@@ -19,7 +19,6 @@ public class SpellController : MonoBehaviour
     private void Start()
     {
         SDBC = SpellDataBaseController.Instance;
-        SelectElement(SpellName.FireBall);
     }
 
     /////////////////////////////// Dýþarýdan eriþim için iþlevler ////////////////////////

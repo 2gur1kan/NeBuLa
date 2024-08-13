@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5554611634543667026}
   - component: {fileID: 3856526730512046718}
   - component: {fileID: 901209597972187951}
-  - component: {fileID: 5619636668454135782}
+  - component: {fileID: -3052727909280184587}
   - component: {fileID: -859283969676066616}
   - component: {fileID: 6994836738963795411}
   m_Layer: 0
@@ -123,7 +123,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.19
---- !u!114 &5619636668454135782
+--- !u!114 &-3052727909280184587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,16 +132,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 163583310388607078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e986417d98bf2e4ba99f610d04e53b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e91f0fa9f0b0144ab55d8174fc72099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellCastTime: 0
-  spellExistenceTime: 3
+  spellCastTime: 5
+  spellExistenceTime: 2
   baseDamage: 1
   damageScale: 1
   radius: 30
   destroyObject: {fileID: 0}
-  timer: 3
 --- !u!95 &-859283969676066616
 Animator:
   serializedVersion: 5

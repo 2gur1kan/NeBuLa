@@ -8,19 +8,7 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Lightning_3-Sheet_0
   serializedVersion: 5
-  m_AnimatorParameters:
-  - m_Name: atisyapti
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: atisSuresi
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

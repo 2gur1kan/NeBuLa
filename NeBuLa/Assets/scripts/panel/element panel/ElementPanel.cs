@@ -4,45 +4,23 @@ using UnityEngine;
 
 public class ElementPanel : MonoBehaviour
 {
-    [SerializeField] private GameObject elementPanel;
-
     // Start is called before the first frame update
     void Start()
     {
-        elementPanel.SetActive(true);
         Time.timeScale = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// panelinden element seçeye yarar
+    /// </summary>
+    public void SelectElement(int sn)
     {
-        
-    }
+        SpellController sc = GameObject.FindGameObjectWithTag("Player").GetComponent<SpellController>();
 
-    public void donus(string donus)
-    {
+        sc.SelectElement((SpellName)sn);
 
-        if(donus == "ates")
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<YetenekAtisi>().setFireBallSeviyesi();
+        Time.timeScale = 1;
 
-            elementPanel.SetActive(false);
-            Time.timeScale = 1;
-        }
-        if(donus == "buz")
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<YetenekAtisi>().setIce_SharpSeviyesi();
-
-            elementPanel.SetActive(false);
-            Time.timeScale = 1;
-        }
-        if(donus == "yildirim")
-        {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<YetenekAtisi>().setLightningSeviyesi();
-
-            elementPanel.SetActive(false);
-            Time.timeScale = 1;
-        }
-
+        Destroy(gameObject);
     }
 }

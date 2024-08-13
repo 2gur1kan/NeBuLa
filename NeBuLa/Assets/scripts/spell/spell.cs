@@ -25,12 +25,16 @@ public class spell : MonoBehaviour
     protected Rigidbody2D rb;
     protected Collider2D clldr;
     protected SpriteRenderer sr;
-    protected AudioSource aus;
+    protected AudioSource aus = null;
     protected Transform player;
     protected Enemy_Array EnemysObject = null;
 
+    [Header("Drop and Trap spell used")]
+    protected Transform dropPos = null;
+
     public int Level { get => level; set => level = value; }
     public Transform Player { get => player; set => player = value; }
+    public Transform DropPos { set => dropPos = value; }
 
     ////////////////////// baz iþlevler ///////////////////////////////
 
@@ -70,7 +74,7 @@ public class spell : MonoBehaviour
         if(player == null) player = GameObject.FindGameObjectWithTag("Player").transform;
         clldr = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
-        aus = GetComponent<AudioSource>();
+        if(GetComponent<AudioSource>()) aus = GetComponent<AudioSource>();
 
         target = Vector3.negativeInfinity;
 
@@ -179,6 +183,8 @@ public class spell : MonoBehaviour
             return;
         }
 
+        transform.position = target;
+
         ActivateSpell();
 
         restartAttack();
@@ -199,9 +205,7 @@ public class spell : MonoBehaviour
             CreateObject = Instantiate(destroyObject, transform.position, Quaternion.identity);
             CreateObjectSC = CreateObject.GetComponent<spell>();
 
-            CreateObject.transform.position = transform.position;
-            CreateObjectSC.Level = level;
-            if (CreateObject.GetComponent<DropSpell>()) CreateObject.GetComponent<DropSpell>().DropPos = transform;
+            AddSpellCreateValue();
 
             CreateObjectSC.Attack();
         }
@@ -209,6 +213,15 @@ public class spell : MonoBehaviour
         {
             CreateObjectSC.Attack();
         }
+    }
+
+    protected virtual void AddSpellCreateValue()
+    {
+        CreateObjectSC.Level = level;
+        CreateObjectSC.DropPos = transform;//düþeceði nokta
+
+        // obje ilk oluþtuðunda konumunda oluþmasýný saðlar
+        CreateObject.transform.position = transform.position;
     }
 
     ////////////////////////////////// Enemy Finder ////////////////////////////////////////////
@@ -258,7 +271,7 @@ public class spell : MonoBehaviour
         isActive = true;
         clldr.enabled = true;
         sr.enabled = true;
-        aus.enabled = true;
+        if(aus != null) aus.enabled = true;
     }
 
     /// <summary>
@@ -269,6 +282,6 @@ public class spell : MonoBehaviour
         isActive = false;
         clldr.enabled = false;
         sr.enabled = false;
-        aus.enabled = false;
+        if (aus != null) aus.enabled = false;
     }
 }
