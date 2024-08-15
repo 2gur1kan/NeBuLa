@@ -23,7 +23,10 @@ public class TrowSpell : spell
 
     protected override void SpellUpdate()
     {
+        if (!isActive) return;
+
         if(MoveForRB != Vector2.zero) rb.velocity = MoveForRB;
+        else setActivateFalse();
     }
 
     public override void Attack()
@@ -92,18 +95,42 @@ public class TrowSpell : spell
         else
         {
             g = new Vector3(h.x - m.x, m.y - h.y, m.z);
-            DirectionAssign(DirectionFinder(g, -90f));
+            DirectionAssign(DirectionFinderX(g, -90f));
         }
     }
 
+    /// <summary>
+    /// yön atamasýný yapar
+    /// </summary>
+    /// <param name="angle"></param>
     protected void DirectionAssign(float angle)
     {
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)); // Açýya göre rotasyon ayarý
     }
 
+    /// <summary>
+    /// y deðiþkenine göre yönelimi hesaplar
+    /// </summary>
+    /// <param name="direciton"></param>
+    /// <param name="add"></param>
+    /// <returns></returns>
     protected float DirectionFinder(Vector3 direciton, float add)
     {
         float angle = direciton.y / (direciton.x + direciton.y);// Açý hesaplamasý
+        angle *= 90;
+        angle += add;
+        return angle;
+    }
+
+    /// <summary>
+    /// x deðiþkenine göre yönelimi hesaplar
+    /// </summary>
+    /// <param name="direciton"></param>
+    /// <param name="add"></param>
+    /// <returns></returns>
+    protected float DirectionFinderX(Vector3 direciton, float add)
+    {
+        float angle = direciton.x / (direciton.x + direciton.y);// Açý hesaplamasý
         angle *= 90;
         angle += add;
         return angle;

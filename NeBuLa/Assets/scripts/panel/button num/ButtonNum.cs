@@ -41,7 +41,6 @@ public class ButtonNum : MonoBehaviour
             RandomNum();
         }
 
-        SeviyeUpdate();
         ListeyiDuzenle();
     }
 
@@ -122,15 +121,5 @@ public class ButtonNum : MonoBehaviour
         {
             skills.Add(0);
         }
-    }
-
-    void SeviyeUpdate()
-    {
-        BicCekSeviyesi = player.GetComponent<YetenekAtisi>().getBicCekSeviyesi();
-        KaranliginZirvesiSeviyesi = player.GetComponent<YetenekAtisi>().getKaranliginZirvesiSeviyesi();
-        KunaiSeviyesi = player.GetComponent<YetenekAtisi>().getKunaiSeviyesi();
-        ShurikenSeviyesi = player.GetComponent<YetenekAtisi>().getShurikenSeviyesi();
-        GizemliAtisSeviyesi = player.GetComponent<YetenekAtisi>().getGizemliAtisSeviyesi();
-        DroneSeviyesi = player.GetComponent<YetenekAtisi>().getDroneSeviyesi();
     }
 }

@@ -21,6 +21,7 @@ TagManager:
   - StatPanel
   - spawn
   - EnemysObject
+  - SpellObject
   layers:
   - Default
   - TransparentFX

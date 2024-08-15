@@ -4,64 +4,53 @@ using UnityEngine;
 
 public class expcollector : MonoBehaviour
 {
-    [SerializeField] int VercegiExp = 1;
+    [SerializeField] private int exp = 1;
+    [SerializeField] private float destroyTime = 15f;
 
-    private float ToplamaMesafesi = 3;
+    private float range = 3;
     private float speed = 2;
 
-    private GameObject Camera;
-    private GameObject player;
+    private Transform player;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        Camera = GameObject.FindGameObjectWithTag("MainCamera");
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        ToplamaMesafesi = Camera.GetComponent<expcollectordata>().getRange();
-        speed = Camera.GetComponent<expcollectordata>().getSpeed();
-
-        StartCoroutine(bekle(15f));
+        range = LevelController.Instance.Range;
+        speed = LevelController.Instance.Speed;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        Invoke("Destroy", destroyTime);
+    }
+
     void Update()
     {
-        Toplan();
+        Move();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.transform.tag == "Player")
         {
-            player.GetComponent<player>().addExp(VercegiExp);
+            LevelController.Instance.AddExp(exp);
             Destroy(gameObject);
         }
     }
 
-    private void Toplan()
+    private void Move()
     {
-        float Uzaklik = Vector3.Distance(transform.position, player.transform.position);
+        float distance = Vector3.Distance(transform.position, player.position);
 
-        if(Uzaklik <= ToplamaMesafesi)
+        if(distance <= range)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
     }
 
-    public void setToplamaMesafsi(float ToplamaMesafesi)
+    private void Destroy()
     {
-        this.ToplamaMesafesi += ToplamaMesafesi;
-    }
-
-    public void setSpeed(float speed)
-    {
-        this.speed += speed;
-    }
-
-    IEnumerator bekle(float sure)
-    {
-        yield return new WaitForSeconds(sure);
         Destroy(gameObject);
     }
 }

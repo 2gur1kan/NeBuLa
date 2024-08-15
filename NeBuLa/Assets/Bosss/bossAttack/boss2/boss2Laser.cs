@@ -34,7 +34,7 @@ public class boss2Laser : MonoBehaviour
         {
             if (collision.GetComponent<player>() != null)
             {
-                collision.GetComponent<player>().HasarAl(hasar);
+                collision.GetComponent<player>().TakeDamage(hasar);
                 Destroy(gameObject);
             }
         }

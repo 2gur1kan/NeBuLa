@@ -58,6 +58,11 @@ public class spell : MonoBehaviour
         SpellOnTriggerEnter2D(collision);
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        SpellOnTriggerStay2D(collision);
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         SpellOnTriggerExit2D(collision);
@@ -70,6 +75,8 @@ public class spell : MonoBehaviour
     /// </summary>
     protected virtual void SpellAwake()
     {
+        CreateOruseSpellObjct();
+
         if (GetComponent<Rigidbody2D>()) rb = GetComponent<Rigidbody2D>();
         if(player == null) player = GameObject.FindGameObjectWithTag("Player").transform;
         clldr = GetComponent<Collider2D>();
@@ -108,6 +115,14 @@ public class spell : MonoBehaviour
 
             DestroySpell();
         }
+    }
+
+    /// <summary>
+    /// triggerstay2d iþlevi için bir ileteç
+    /// </summary>
+    protected virtual void SpellOnTriggerStay2D(Collider2D collision)
+    {
+
     }
 
     /// <summary>
@@ -152,7 +167,7 @@ public class spell : MonoBehaviour
     /// <summary>
     /// spell in levelini 1 attýrmaya yarar
     /// </summary>
-    public int LevelUp()
+    public virtual int LevelUp()
     {
         level++;
 
@@ -164,7 +179,7 @@ public class spell : MonoBehaviour
     /// <summary>
     /// spell in levelini isteilen seviyeye yükseltir
     /// </summary>
-    public int LevelUp(int level)
+    public virtual int LevelUp(int level)
     {
         this.level = level;
 
@@ -261,7 +276,7 @@ public class spell : MonoBehaviour
         yield return null;
     }
 
-    //////////////////////////////// Spell Acrivate ///////////////////////////////////////
+    //////////////////////////////// Spell Activate ///////////////////////////////////////
     
     /// <summary>
     /// objenin görünür evrende oluþmasýný saðlar
@@ -283,5 +298,22 @@ public class spell : MonoBehaviour
         clldr.enabled = false;
         sr.enabled = false;
         if (aus != null) aus.enabled = false;
+    }
+
+    /// <summary>
+    /// Mevcut bir "SpellObject" GameObject'ini bulur veya oluþturur ve bu GameObject'i parent olarak ayarlar.
+    /// Bu sayede sahnede toplu halde bulunurlar
+    /// </summary>
+    protected void CreateOruseSpellObjct()
+    {
+        GameObject so = GameObject.FindGameObjectWithTag("SpellObject");
+
+        if(so == null)
+        {
+            so = new GameObject("SpellObject");
+            so.tag = "SpellObject";
+        }
+
+        transform.parent = so.transform;
     }
 }

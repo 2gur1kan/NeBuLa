@@ -12,7 +12,7 @@ public class zamanlayici : MonoBehaviour
 
     private void Awake()
     {
-        spawn = GameObject.FindGameObjectWithTag("spawn").GetComponent<Enemy_Spawn>();
+        spawn = Enemy_Spawn.Instance;
         sayac = GameObject.FindGameObjectWithTag("zamanlayici").GetComponent<Text>();
     }
 

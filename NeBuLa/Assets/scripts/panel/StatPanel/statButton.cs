@@ -29,11 +29,11 @@ public class statButton : MonoBehaviour
     {
         if (Num == 0)
         {
-            player.GetComponent<player>().playerCanHavuzuAdd();
+            player.GetComponent<player>().AddHealth();
         }
         else if (Num == 1)
         {
-            player.GetComponent<player>().playerCanAdd();
+            player.GetComponent<player>().heal();
         }
         else if (Num == 2)
         {
@@ -42,12 +42,12 @@ public class statButton : MonoBehaviour
         }
         else if (Num == 3)
         {
-            camera.GetComponent<expcollectordata>().setRange();
+            LevelController.Instance.Range++;
             statPanel.GetComponent<StatPanel>().setExpCollectorRange();
         }
         else if (Num == 4)
         {
-            camera.GetComponent<expcollectordata>().setSpeed();
+            LevelController.Instance.Speed++;
             statPanel.GetComponent<StatPanel>().setExpCollectorSpeed();
         }
 

@@ -20,5 +20,11 @@ public enum SpellName
 {
     FireBall,
     IceSharp,
-    Lightning
+    Lightning,
+    Shuriken,
+    Kunai,
+    ReapCzech,//biççek
+    DarkPeak,//karanlýðýn zirvesi
+    MysteriousShot,
+    Drone
 }

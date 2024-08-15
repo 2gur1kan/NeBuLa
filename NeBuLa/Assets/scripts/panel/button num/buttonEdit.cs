@@ -58,28 +58,28 @@ public class buttonEdit : MonoBehaviour
     {
         if (Num == 0)
         {
-            player.GetComponent<YetenekAtisi>().BicCekAc();
-            player.GetComponent<YetenekAtisi>().setBicCekSeviyesi();
+            //player.GetComponent<YetenekAtisi>().BicCekAc();
+            //player.GetComponent<YetenekAtisi>().setBicCekSeviyesi();
         }
         else if (Num == 1)
         {
-            player.GetComponent<YetenekAtisi>().setKunaiSeviyesi();
+            //player.GetComponent<YetenekAtisi>().setKunaiSeviyesi();
         }
         else if (Num == 2)
         {
-            player.GetComponent<YetenekAtisi>().setShurikenSeviyesi();
+            //player.GetComponent<YetenekAtisi>().setShurikenSeviyesi();
         }
         else if (Num == 3)
         {
-            player.GetComponent<YetenekAtisi>().setKaranliginZirvesiSeviyesi();
+            //player.GetComponent<YetenekAtisi>().setKaranliginZirvesiSeviyesi();
         }
         else if (Num == 4)
         {
-            player.GetComponent<YetenekAtisi>().setDroneSeviyesi();
+            //player.GetComponent<YetenekAtisi>().setDroneSeviyesi();
         }
         else if (Num == 5)
         {
-            player.GetComponent<YetenekAtisi>().setGizemliAtisSeviyesi();
+            // player.GetComponent<YetenekAtisi>().setGizemliAtisSeviyesi();
         }
 
         Time.timeScale = 1;

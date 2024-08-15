@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,29 +6,33 @@ using UnityEngine;
 
 public class Enemy_Spawn : MonoBehaviour
 {
-    [SerializeField] GameObject[] Light;
-    [SerializeField] GameObject[] Medium;
-    [SerializeField] GameObject[] heavy;
+    public static Enemy_Spawn Instance;
 
+    [Header("Wawe Value")]
+    [SerializeField] List<EnemyWaweValue> EnemyWaweList;
     [SerializeField] private List<GameObject> Enemys;
-    [SerializeField] private Transform[] SpawnPoints;
+    private int CurrentWawe = 0;
+    private int level = 1;
+    private GameObject EnemyObject;
 
-    [SerializeField] private GameObject canvas;
+    [Header("Spawn")]
+    [SerializeField] private float distance = 20;
+    private Transform player;
+    [SerializeField] private float timerResetValue = 0.5f;
+    private float timer = 0f;
+
+    [Header("Old System")]
     [SerializeField] private GameObject[] suru;
 
-    private GameObject player;
-    private GameObject EnemyObject;
-    private int seviye = 1;
-    private int oncekiSeviye = 1;
-
-    private float baseBeklmeSuresi = 0.5f;
-    [SerializeField] private float beklemesuresiSifirla = 0.5f;
-    private float beklemesuresi = 0f;
-    private bool boss = false;
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         setEnemys();
 
         EnemyObject = new GameObject("EnemysObject");
@@ -37,96 +42,108 @@ public class Enemy_Spawn : MonoBehaviour
 
     private void Update()
     {
-        seviye  = player.GetComponent<player>().getSeviye();
+        Spawner();
+    }
 
-        if(oncekiSeviye < seviye)
-        {
-            oncekiSeviye++;
-            setEnemys();
-            setBeklemeSuresiSifirla(0.06f);
-        }
+    /////////////////////////////////// spawn fonc
 
-        spawn();
+    /// <summary>
+    /// düþmanlarý süreye dayalý oluþturur
+    /// </summary>
+    private void Spawner()
+    {
+        if (timer <= 0) spawn();
+        else timer -= Time.deltaTime;
     }
 
     /// <summary>
-    /// Ouþacak düþmanlarý düzenler
+    /// listeden ratgele bir düþmaný seviye kadar rastgele bir yere çýkarýr
     /// </summary>
-    void setEnemys()
+    private void spawn()
     {
-        Enemys = new List<GameObject>();
+        timer = timerResetValue;
 
-        if (seviye < 3)
-        {
-            for (int i = 0; i < Light.Length; i++)
-            {
-                Enemys.Add(Light[i]);
-            }
-        }
-        else if(seviye < 5)
-        {
-            for (int i = 0; i < Light.Length; i++)
-            {
-                Enemys.Add(Light[i]);
-            }
-            for (int i = 0; i < Medium.Length; i++)
-            {
-                Enemys.Add(Medium[i]);
-            }
-        }
-        else if(seviye < 8)
-        {
-            for (int i = 0; i < heavy.Length; i++)
-            {
-                Enemys.Add(heavy[i]);
-            }
-            for (int i = 0; i < Medium.Length; i++)
-            {
-                Enemys.Add(Medium[i]);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < heavy.Length; i++)
-            {
-                Enemys.Add(heavy[i]);
-            }
-        }
+        Vector3 point = GetRandomPointAroundCharacter();
+        GameObject enemy = Enemys[UnityEngine.Random.Range(0, Enemys.Count)];
+        int gg = level;
 
+        while (gg > 0)
+        {
+            Instantiate(enemy, point, Quaternion.identity).transform.parent = EnemyObject.transform;
+
+            gg--;
+        }
     }
 
-    void spawn()
+    /// <summary>
+    /// düþman oluþturulacak rastgele bir nokta belirler
+    /// </summary>
+    /// <returns></returns>
+    private Vector3 GetRandomPointAroundCharacter()
     {
-        if (beklemesuresi <= 0)
-        {
-            beklemesuresi = beklemesuresiSifirla;
+        float angle = UnityEngine.Random.Range(0f, 360f);
+        angle *= Mathf.Deg2Rad;
 
-            Instantiate(Enemys[Random.Range(0, Enemys.Count)], SpawnPoints[Random.Range(0, SpawnPoints.Length)].position, Quaternion.identity).transform.parent = EnemyObject.transform;
+        float x = Mathf.Cos(angle) * distance;
+        float y = Mathf.Sin(angle) * distance;
 
-        }
-        else beklemesuresi -= Time.deltaTime;
+        Vector3 randomPoint = new Vector3(x, y, 0) + player.position;
+        return randomPoint;
     }
 
+    /// <summary>
+    /// sürü oluþturur
+    /// </summary>
+    /// <param name="dakika"></param>
     public void suruSpawn(int dakika)
     {
-        GameObject Suru = Instantiate(suru[Random.Range(0, suru.Length)], SpawnPoints[Random.Range(0, SpawnPoints.Length)].position, Quaternion.identity);
+        GameObject Suru = Instantiate(suru[UnityEngine.Random.Range(0, suru.Length)], GetRandomPointAroundCharacter(), Quaternion.identity);
         Suru.GetComponent<suru>().setSuruSayisi(10 + (dakika * 5));
     }
 
-    void setBeklemeSuresiSifirla(float azalt)
+    /////////////////////////////////////////////// level designer
+
+    /// <summary>
+    /// level atladýðýnda olmasý gereken iþlevleri çaðýrýr
+    /// </summary>
+    public void LevelUp()
     {
-        if(this.beklemesuresiSifirla > 0.01f)
+        level++;
+
+        setEnemys();
+        setResetTimer(0.05f);
+    }
+
+    /// <summary>
+    /// Oluþacak düþmanlarý düzenler
+    /// </summary>
+    private void setEnemys()
+    {
+        if (CurrentWawe + 1 > EnemyWaweList.Count) return;
+
+        if (EnemyWaweList[CurrentWawe + 1].startLevel == level)
         {
-            if (!boss) this.beklemesuresiSifirla -= azalt;
-            else this.baseBeklmeSuresi -= azalt;
+            CurrentWawe++;
+            Enemys = EnemyWaweList[CurrentWawe].WaweEnemyList;
         }
     }
 
-    public void resetBeklemeSuresi(bool boss)
+    /// <summary>
+    /// bekleme süresini azaltýr
+    /// </summary>
+    /// <param name="azalt"></param>
+    private void setResetTimer(float azalt)
     {
-        this.boss = boss;
-        float a = beklemesuresiSifirla;
-        beklemesuresiSifirla = baseBeklmeSuresi;
-        baseBeklmeSuresi = a;
+        if(timerResetValue > 0.1f)
+        {
+            timerResetValue -= azalt;
+        }
     }
+}
+
+[Serializable]
+public class EnemyWaweValue
+{
+    public List<GameObject> WaweEnemyList;
+    public int startLevel = 0;
 }

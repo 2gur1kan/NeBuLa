@@ -28,7 +28,7 @@ public class EnemyDamage : MonoBehaviour
             if(timer <= 0)
             {
                 timer = cast;
-                collision.GetComponent<player>().HasarAl(damage);
+                collision.GetComponent<player>().TakeDamage(damage);
             }
 
         }

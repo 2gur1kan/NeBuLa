@@ -42,7 +42,7 @@ public class boss2Mermi : MonoBehaviour
         {
             if (collision.GetComponent<player>() != null)
             {
-                collision.GetComponent<player>().HasarAl(hasar);
+                collision.GetComponent<player>().TakeDamage(hasar);
                 Destroy(gameObject);
             }
         }

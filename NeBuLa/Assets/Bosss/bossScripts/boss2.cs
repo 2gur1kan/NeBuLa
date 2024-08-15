@@ -36,7 +36,6 @@ public class boss2 : MonoBehaviour
 
     private void Awake()
     {
-        GameObject.FindGameObjectWithTag("spawn").GetComponent<Enemy_Spawn>().resetBeklemeSuresi(true);
         can = maxCan;
     }
 
@@ -251,7 +250,6 @@ public class boss2 : MonoBehaviour
     IEnumerator dead()
     {
         yield return new WaitForSeconds(0.5f);
-        GameObject.FindGameObjectWithTag("spawn").GetComponent<Enemy_Spawn>().resetBeklemeSuresi(false);
         Destroy(gameObject);
     }
 
