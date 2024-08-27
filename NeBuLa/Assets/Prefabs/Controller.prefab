@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7270240448295091075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86468201306118069}
+  - component: {fileID: 8268314551702824617}
+  - component: {fileID: 2543149487692261837}
+  - component: {fileID: 2832557456532535044}
+  m_Layer: 0
+  m_Name: Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &86468201306118069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7270240448295091075}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1316673, y: 0.1659664, z: -0.06724325}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8268314551702824617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7270240448295091075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1cc7893f908f6e4f856bc0e072135d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyWaweList:
+  - WaweEnemyList:
+    - {fileID: 8926891225234074538, guid: e4b71dc8e8d40a046bc4562328bffa48, type: 3}
+    - {fileID: 8926891225234074538, guid: b8a3788ca058381468bf22cf844468ce, type: 3}
+    - {fileID: 8926891225234074538, guid: b8a3788ca058381468bf22cf844468ce, type: 3}
+    - {fileID: 8926891225234074538, guid: b8a3788ca058381468bf22cf844468ce, type: 3}
+    - {fileID: 8926891225234074538, guid: b8a3788ca058381468bf22cf844468ce, type: 3}
+    startLevel: 0
+  - WaweEnemyList:
+    - {fileID: 8926891225234074538, guid: e4b71dc8e8d40a046bc4562328bffa48, type: 3}
+    - {fileID: 8926891225234074538, guid: b8a3788ca058381468bf22cf844468ce, type: 3}
+    startLevel: 1
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: 82ce9ce462a0bfd409fa99f46c97359d, type: 3}
+    - {fileID: 8926891225234074538, guid: e4b71dc8e8d40a046bc4562328bffa48, type: 3}
+    - {fileID: 8926891225234074538, guid: e4b71dc8e8d40a046bc4562328bffa48, type: 3}
+    - {fileID: 8926891225234074538, guid: e4b71dc8e8d40a046bc4562328bffa48, type: 3}
+    - {fileID: 8926891225234074538, guid: e4b71dc8e8d40a046bc4562328bffa48, type: 3}
+    startLevel: 3
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: 82ce9ce462a0bfd409fa99f46c97359d, type: 3}
+    - {fileID: 8926891225234074538, guid: e4b71dc8e8d40a046bc4562328bffa48, type: 3}
+    startLevel: 4
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: bc6bc7347168c2243ba54bbc16693452, type: 3}
+    - {fileID: 7936627335664067989, guid: 82ce9ce462a0bfd409fa99f46c97359d, type: 3}
+    - {fileID: 7936627335664067989, guid: 82ce9ce462a0bfd409fa99f46c97359d, type: 3}
+    - {fileID: 7936627335664067989, guid: 82ce9ce462a0bfd409fa99f46c97359d, type: 3}
+    - {fileID: 7936627335664067989, guid: 82ce9ce462a0bfd409fa99f46c97359d, type: 3}
+    startLevel: 6
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: bc6bc7347168c2243ba54bbc16693452, type: 3}
+    - {fileID: 7936627335664067989, guid: 82ce9ce462a0bfd409fa99f46c97359d, type: 3}
+    startLevel: 7
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: be3bab6df1fb85748b331a65c7dd0da0, type: 3}
+    - {fileID: 7936627335664067989, guid: bc6bc7347168c2243ba54bbc16693452, type: 3}
+    - {fileID: 7936627335664067989, guid: bc6bc7347168c2243ba54bbc16693452, type: 3}
+    - {fileID: 7936627335664067989, guid: bc6bc7347168c2243ba54bbc16693452, type: 3}
+    - {fileID: 7936627335664067989, guid: bc6bc7347168c2243ba54bbc16693452, type: 3}
+    startLevel: 9
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: be3bab6df1fb85748b331a65c7dd0da0, type: 3}
+    - {fileID: 7936627335664067989, guid: bc6bc7347168c2243ba54bbc16693452, type: 3}
+    startLevel: 10
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: b149660523814a74da19b724dc4fc2e8, type: 3}
+    - {fileID: 7936627335664067989, guid: be3bab6df1fb85748b331a65c7dd0da0, type: 3}
+    - {fileID: 7936627335664067989, guid: be3bab6df1fb85748b331a65c7dd0da0, type: 3}
+    - {fileID: 7936627335664067989, guid: be3bab6df1fb85748b331a65c7dd0da0, type: 3}
+    - {fileID: 7936627335664067989, guid: be3bab6df1fb85748b331a65c7dd0da0, type: 3}
+    startLevel: 12
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: b149660523814a74da19b724dc4fc2e8, type: 3}
+    - {fileID: 7936627335664067989, guid: be3bab6df1fb85748b331a65c7dd0da0, type: 3}
+    startLevel: 13
+  - WaweEnemyList:
+    - {fileID: 7936627335664067989, guid: b149660523814a74da19b724dc4fc2e8, type: 3}
+    startLevel: 15
+  Enemys: []
+  distance: 40
+  timerResetValue: 0.5
+  suru:
+  - {fileID: 8926891225234074538, guid: db09b7e2793484e4682d5633d05ba965, type: 3}
+  - {fileID: 8926891225234074538, guid: dc0d21451fceb004cb67b9b0028e6d45, type: 3}
+  - {fileID: 7936627335664067989, guid: d8206fac684e8bc4aa03a9c821e18156, type: 3}
+--- !u!114 &2543149487692261837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7270240448295091075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47611ce290a6c440becd972b9b06e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desiredExp: 10
+  expScale: 2
+  ExpBari: {fileID: 0}
+--- !u!114 &2832557456532535044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7270240448295091075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2582b1081dd720d44b67a686096dbe26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SDB: {fileID: 11400000, guid: 63bd5e3949ac7034e8e7e1836eb1174f, type: 2}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0c53c365ed7e3418a4e7f7e5e2a555, type: 3}
+  m_Name: SpellDataBase
+  m_EditorClassIdentifier: 
+  Spells:
+  - Name: 0
+    GO: {fileID: 6150921312760967270, guid: be32e8cca45744e4290c24bc8add7001, type: 3}
+  - Name: 1
+    GO: {fileID: 4929777867546527171, guid: 4ed4265f1f4ac6d4096b8979eaf88121, type: 3}
+  - Name: 2
+    GO: {fileID: 598482465124691453, guid: 062e528a45a5db14d8874a3a3f2752ea, type: 3}
+  - Name: 3
+    GO: {fileID: 8866555419293997480, guid: fa7eac0ae4c802e4598d0758e558fc96, type: 3}
+  - Name: 4
+    GO: {fileID: 6181035631560719472, guid: 5cc6c35a3083daf4497d9757e5176360, type: 3}
+  - Name: 5
+    GO: {fileID: 94619933071490030, guid: 674a650fcc64503489f1d22807c16b7f, type: 3}
+  - Name: 6
+    GO: {fileID: 127283980188718587, guid: 2d6331c23996fe14fadc0bbedb4cb1f9, type: 3}
+  - Name: 7
+    GO: {fileID: 2816733822052778261, guid: 1e76ba26b8ee3674eb690a6fd4cb5f21, type: 3}
+  - Name: 8
+    GO: {fileID: 3639394250262594518, guid: 715e114f9d29edf4798369e6c85cd1cd, type: 3}
